@@ -172,7 +172,7 @@ elif page == "About Project":
 else:
     st.markdown("""<section class="hero"><div class="eyebrow">Connect with the project</div><h1>Contact & social media.</h1><p>Follow the student portfolio, view related projects and share OilPulse with your learning network.</p></section>""",unsafe_allow_html=True)
     st.markdown("""<div class="social">
-    <a href="https://www.linkedin.com/in/rajakokila-muralitharan-4b3689120" target="_blank">LinkedIn</a>
+    <a href="https://www.linkedin.com/in/rajakokila-periyathamby-4b3689120/" target="_blank">LinkedIn</a>
     <a href="https://github.com/Rajakokila-P" target="_blank">GitHub</a>
     <a href="https://www.instagram.com/" target="_blank">Instagram</a>
     <a href="https://www.facebook.com/" target="_blank">Facebook</a>
