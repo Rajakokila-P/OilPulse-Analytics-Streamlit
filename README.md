@@ -1,93 +1,59 @@
-# OilPulse — Five-Page Python Analytics App
+# OilPulse — Python Analytics Portfolio
 
-OilPulse is a professional student portfolio project for analysing synthetic global oil operations data from 2015–2026.
+An educational Streamlit application for exploring synthetic oil operations data covering 2015–2026.
 
-## Five pages
+**Tools:** Python · Streamlit · pandas · Plotly · SQLite · Excel/CSV
 
-1. Home — headline, project benefits and navigation
-2. Analytics — filters, KPIs and five operational charts
-3. Data Explorer — record table and filtered CSV download
-4. About Project — student purpose, learning outcomes and technologies
-5. Contact & Social — LinkedIn, GitHub, Instagram, Facebook and X/Twitter links
+## Application pages
 
-The opening screen contains customer registration, login and forgotten-password reset. Passwords are stored as salted PBKDF2 hashes in a local SQLite database.
+| Page | Current implementation |
+| --- | --- |
+| Home | Project introduction and navigation guidance. |
+| Analytics | Year, region and country filters; production, sales, revenue, profit and downtime KPIs; five monthly trend charts. |
+| Data Explorer | Record table, year/region/country filters and CSV download. |
+| About Project | Educational purpose, technologies and data limitations. |
+| Contact & Social | LinkedIn and GitHub links; generic Instagram, Facebook and X links awaiting personal profile addresses. |
 
-## Run on Windows
+The current interface places filters above the charts and a **Log off** button in the top bar. It does not expose an account-settings page, margin KPI or top-producer comparison chart.
 
-Extract the ZIP and open the inner `OilPulse_Python_App` folder in Visual Studio Code. Run these commands separately:
+## Run locally
 
-```powershell
-pip install -r requirements.txt
+Download or clone this repository and open the folder containing `app.py` and `requirements.txt`. Run these commands separately:
+
+```bash
+python -m pip install -r requirements.txt
 python -m streamlit run app.py
 ```
 
-Open http://localhost:8501 and keep the terminal open while using the app.
+Open the local address printed by Streamlit, normally http://localhost:8501, and keep the terminal running.
 
-## Important
+## Account demonstration
 
-All oil figures are synthetic practice data. They are not official statistics or financial advice. Do not upload `customers.db` because it can contain personal registration details.
+The opening screen offers registration, login and password reset. Registration collects a name, address, date of birth, recovery email, username and password. Use fictional details for demonstrations.
 
-## Customer accounts
+- Account data is stored locally in `customers.db`.
+- Passwords use salted PBKDF2-HMAC-SHA256 hashes.
+- Password reset matches the entered username, email address and date of birth against stored details.
+- No recovery email or time-limited reset token is sent. Matching an email address does not verify ownership of that mailbox.
+- An authenticated user can log off using the top-bar button.
 
-The app now opens on a customer access page. A customer can register using a
-full name, home address, date of birth, recovery email, username and password, then log in to
-view the dashboard and log off from the sidebar. If a password is forgotten,
-the customer can verify their registered username, recovery email and date of birth,
-then securely choose a new password.
+These are educational account workflows, not a production-ready authentication service. Do not publish `customers.db` or use the demonstration to collect real customer information.
 
-Account data is stored locally in `customers.db`, which the app creates on its
-first run. Passwords are protected with a salted PBKDF2 hash and are never
-stored as readable text. Do not upload `customers.db` to GitHub or share it.
+## Data and analysis
 
-An interactive, professional Streamlit portfolio project that analyses a realistic synthetic monthly dataset for 15 major oil-producing countries from 2015 to 2026.
+The workbook is [World_Oil_Operations_Practice_Dataset.xlsx](data/World_Oil_Operations_Practice_Dataset.xlsx), read from its **Oil Data** sheet.
 
-## Features
+All figures are synthetic practice data, not official oil statistics, live market information or financial advice. Production, sales, revenue and profit are summed for the selected records; downtime is displayed as an arithmetic mean. Filter choices are drawn from the workbook.
 
-- Customer registration with full name, address, date of birth and recovery email
-- Secure username and password login, plus sidebar logoff
-- Forgot-password reset using the registered username, recovery email and date of birth
-- Account settings for existing customers to add or change a recovery email
-- Cleaner interface with Streamlit's technical three-dot menu hidden
-- Responsive dark-blue OilPulse interface
-- Left-side filters for all years from 2015–2026, six regions and 15 countries
-- KPI cards for production, sales, revenue, profit and margin
-- Monthly production and revenue trends
-- Top-producer comparison
-- Revenue, profit and downtime analysis
-- Filtered data table and CSV download
+## Repository contents
 
-The dataset contains 2,160 monthly practice records: 12 years × 12 months × 15 countries.
+- [app.py](app.py): Streamlit pages, filters, charts and CSV export.
+- [auth.py](auth.py): SQLite account functions and password hashing.
+- [requirements.txt](requirements.txt): application dependencies.
+- [run_app.bat](run_app.bat): Windows launch helper.
+- [tests/test_auth.py](tests/test_auth.py): existing authentication test source.
+- [data/World_Oil_Operations_Practice_Dataset.xlsx](data/World_Oil_Operations_Practice_Dataset.xlsx): practice workbook.
 
-> The dataset is synthetic practice data and must not be presented as official statistics.
+## Verification status
 
-## Run the app
-
-1. Open a terminal in this folder.
-2. Install the required packages:
-
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-3. Start Streamlit:
-
-   ```bash
-   python -m streamlit run app.py
-   ```
-
-4. Open the local address shown in the terminal, normally `http://localhost:8501`.
-
-## Project structure
-
-```text
-OilPulse_Python_App/
-├── app.py
-├── auth.py
-├── requirements.txt
-├── README.md
-├── .gitignore
-├── tests/
-│   └── test_auth.py
-└── data/
-    └── World_Oil_Operations_Practice_Dataset.xlsx
-```
+This README was aligned with the current source files. Application execution, browser behaviour and authentication tests were not rerun during the documentation update. The presence of a test file does not establish that tests pass.
